@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import argparse
 import cv2
 
@@ -23,8 +26,7 @@ else:
 #                                      0 1 2 3 4
 def detect_face(src, cascade):# return [x,y,w,h]
   img_gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
-  facerect = cascade.detectMultiScale(
-    img_gray, scaleFactor=1.1, minNeighbors=2, minSize=(170, 170))
+  facerect = cascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=2, minSize=(170, 170))
   return facerect
 
 
@@ -32,8 +34,7 @@ def compos_rect(rects, img):
   color = (0, 255, 0)  # 矩形の色(BGR)
   if len(rects) > 0:
     for rect in rects:
-      cv2.rectangle(img, tuple(rect[0:2]), tuple(
-        rect[0:2]+rect[2:4]), color, thickness=6)
+      cv2.rectangle(img, tuple(rect[0:2]), tuple(rect[0:2]+rect[2:4]), color, thickness=6)
   return img
 
 
@@ -88,7 +89,6 @@ if __name__ == "__main__":
     key = cv2.waitKey(10)
     if key == 27:
       break
-
   if is_record:
     out.release()
   cap.release()
